@@ -1,1 +1,62 @@
-actions: []
+actions:
+- operation:
+    name: Sync from base tables of HAPI DBs (*Ku Apps)
+    dataset: dataform
+    project: nextgen-398301
+    filename: sync_from_starKu_Apps.sql
+- operation:
+    name: Sync from base tables of HAPI DBs (Converted FHIR)
+    dataset: dataform
+    project: nextgen-398301
+    filename: sync_from_converted_FHIR.sql
+- operation:
+    name: Sync "Patient"
+    dataset: dataform
+    project: nextgen-398301
+    dependencyTargets:
+    - name: Sync from base tables of HAPI DBs (*Ku Apps)
+    - name: Sync from base tables of HAPI DBs (Converted FHIR)
+    filename: sync_Patient.sql
+- operation:
+    name: Sync "Observation"
+    dataset: dataform
+    project: nextgen-398301
+    dependencyTargets:
+    - name: Sync from base tables of HAPI DBs (*Ku Apps)
+    - name: Sync from base tables of HAPI DBs (Converted FHIR)
+    filename: sync_Observation.sql
+- operation:
+    name: Sync "Practitioner"
+    dataset: dataform
+    project: nextgen-398301
+    dependencyTargets:
+    - name: Sync from base tables of HAPI DBs (*Ku Apps)
+    - name: Sync from base tables of HAPI DBs (Converted FHIR)
+    filename: sync_Practitioner.sql
+- operation:
+    name: Sync "Encounter"
+    dataset: dataform
+    project: nextgen-398301
+    dependencyTargets:
+    - name: Sync from base tables of HAPI DBs (*Ku Apps)
+    - name: Sync from base tables of HAPI DBs (Converted FHIR)
+    filename: sync_Encounter.sql
+- operation:
+    name: Sync "Organization"
+    dataset: dataform
+    project: nextgen-398301
+    dependencyTargets:
+    - name: Sync from base tables of HAPI DBs (*Ku Apps)
+    - name: Sync from base tables of HAPI DBs (Converted FHIR)
+    filename: sync_Organization.sql
+- operation:
+    name: Sync "Flattened Health Record - Observation-based - Incremental"
+    dataset: dataform
+    project: nextgen-398301
+    dependencyTargets:
+    - name: Sync "Patient"
+    - name: Sync "Observation"
+    - name: Sync "Practitioner"
+    - name: Sync "Encounter"
+    - name: Sync "Organization"
+    filename: sync_Organization.sql
