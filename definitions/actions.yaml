@@ -10,44 +10,47 @@ actions:
     project: nextgen-398301
     filename: sync_from_converted_FHIR.sql
 - operation:
-    name: Sync "Patient"
+    name: Refresh Materialized View "Incremental Table"
     dataset: dataform
     project: nextgen-398301
     dependencyTargets:
     - name: Sync from base tables of HAPI DBs (*Ku Apps)
     - name: Sync from base tables of HAPI DBs (Converted FHIR)
+    filename: refresh_mv_incremental_table.sql
+- operation:
+    name: Sync "Patient"
+    dataset: dataform
+    project: nextgen-398301
+    dependencyTargets:
+    - name: Refresh Materialized View "Incremental Table"
     filename: sync_Patient.sql
 - operation:
     name: Sync "Observation"
     dataset: dataform
     project: nextgen-398301
     dependencyTargets:
-    - name: Sync from base tables of HAPI DBs (*Ku Apps)
-    - name: Sync from base tables of HAPI DBs (Converted FHIR)
+    - name: Refresh Materialized View "Incremental Table"
     filename: sync_Observation.sql
 - operation:
     name: Sync "Practitioner"
     dataset: dataform
     project: nextgen-398301
     dependencyTargets:
-    - name: Sync from base tables of HAPI DBs (*Ku Apps)
-    - name: Sync from base tables of HAPI DBs (Converted FHIR)
+    - name: Refresh Materialized View "Incremental Table"
     filename: sync_Practitioner.sql
 - operation:
     name: Sync "Encounter"
     dataset: dataform
     project: nextgen-398301
     dependencyTargets:
-    - name: Sync from base tables of HAPI DBs (*Ku Apps)
-    - name: Sync from base tables of HAPI DBs (Converted FHIR)
+    - name: Refresh Materialized View "Incremental Table"
     filename: sync_Encounter.sql
 - operation:
     name: Sync "Organization"
     dataset: dataform
     project: nextgen-398301
     dependencyTargets:
-    - name: Sync from base tables of HAPI DBs (*Ku Apps)
-    - name: Sync from base tables of HAPI DBs (Converted FHIR)
+    - name: Refresh Materialized View "Incremental Table"
     filename: sync_Organization.sql
 - operation:
     name: Sync "Flattened Health Record - Observation-based - Incremental"
