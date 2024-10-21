@@ -59,4 +59,4 @@ actions:
     - name: Sync "Practitioner"
     - name: Sync "Encounter"
     - name: Sync "Organization"
-    filename: sync_Organization.sql
+    filename: sync_flattened_health_record_observation_based_incremental.sql
