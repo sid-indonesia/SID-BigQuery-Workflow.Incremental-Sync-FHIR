@@ -1,31 +1,5 @@
 actions:
 - operation:
-    name: Sync from base tables of HAPI DBs (*Ku Apps)
-    dataset: dataform
-    project: nextgen-398301
-    filename: sync_from_starKu_Apps.sql
-- operation:
-    name: Sync from base tables of HAPI DBs (Converted FHIR)
-    dataset: dataform
-    project: nextgen-398301
-    filename: sync_from_converted_FHIR.sql
-- operation:
-    name: Refresh Materialized View "Flattened Health Record - Encounter-based"
-    dataset: dataform
-    project: nextgen-398301
-    dependencyTargets:
-    - name: Sync from base tables of HAPI DBs (*Ku Apps)
-    - name: Sync from base tables of HAPI DBs (Converted FHIR)
-    filename: refresh_mv_flattened_health_record_encounter_based.sql
-- operation:
-    name: Refresh Materialized View "Flattened Health Record - Immunization-based"
-    dataset: dataform
-    project: nextgen-398301
-    dependencyTargets:
-    - name: Sync from base tables of HAPI DBs (*Ku Apps)
-    - name: Sync from base tables of HAPI DBs (Converted FHIR)
-    filename: refresh_mv_flattened_health_record_immunization_based.sql
-- operation:
     name: Refresh Materialized View "Incremental Table"
     dataset: dataform
     project: nextgen-398301
@@ -34,40 +8,12 @@ actions:
     - name: Sync from base tables of HAPI DBs (Converted FHIR)
     filename: refresh_mv_incremental_table.sql
 - operation:
-    name: Sync "Patient"
-    dataset: dataform
-    project: nextgen-398301
-    dependencyTargets:
-    - name: Refresh Materialized View "Incremental Table"
-    filename: sync_Patient.sql
-- operation:
-    name: Sync "Observation"
-    dataset: dataform
-    project: nextgen-398301
-    dependencyTargets:
-    - name: Refresh Materialized View "Incremental Table"
-    filename: sync_Observation.sql
-- operation:
-    name: Sync "Practitioner"
-    dataset: dataform
-    project: nextgen-398301
-    dependencyTargets:
-    - name: Refresh Materialized View "Incremental Table"
-    filename: sync_Practitioner.sql
-- operation:
     name: Sync "Encounter"
     dataset: dataform
     project: nextgen-398301
     dependencyTargets:
     - name: Refresh Materialized View "Incremental Table"
     filename: sync_Encounter.sql
-- operation:
-    name: Sync "Organization"
-    dataset: dataform
-    project: nextgen-398301
-    dependencyTargets:
-    - name: Refresh Materialized View "Incremental Table"
-    filename: sync_Organization.sql
 - operation:
     name: Sync "Flattened Health Record - Observation-based - Incremental"
     dataset: dataform
@@ -79,3 +25,41 @@ actions:
     - name: Sync "Encounter"
     - name: Sync "Organization"
     filename: sync_flattened_health_record_observation_based_incremental.sql
+- operation:
+    name: Sync "Observation"
+    dataset: dataform
+    project: nextgen-398301
+    dependencyTargets:
+    - name: Refresh Materialized View "Incremental Table"
+    filename: sync_Observation.sql
+- operation:
+    name: Sync "Organization"
+    dataset: dataform
+    project: nextgen-398301
+    dependencyTargets:
+    - name: Refresh Materialized View "Incremental Table"
+    filename: sync_Organization.sql
+- operation:
+    name: Sync "Patient"
+    dataset: dataform
+    project: nextgen-398301
+    dependencyTargets:
+    - name: Refresh Materialized View "Incremental Table"
+    filename: sync_Patient.sql
+- operation:
+    name: Sync "Practitioner"
+    dataset: dataform
+    project: nextgen-398301
+    dependencyTargets:
+    - name: Refresh Materialized View "Incremental Table"
+    filename: sync_Practitioner.sql
+- operation:
+    name: Sync from base tables of HAPI DBs (*Ku Apps)
+    dataset: dataform
+    project: nextgen-398301
+    filename: sync_from_starKu_Apps.sql
+- operation:
+    name: Sync from base tables of HAPI DBs (Converted FHIR)
+    dataset: dataform
+    project: nextgen-398301
+    filename: sync_from_converted_FHIR.sql
