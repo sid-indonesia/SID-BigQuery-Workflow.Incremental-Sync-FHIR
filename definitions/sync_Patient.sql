@@ -1,2 +1,5 @@
 CALL
-  `nextgen-398301.fhir_dataset_multiple_sources.sync_Patient_where_last_updated_after_x_y_ago`(1, 'HOUR');
+  `nextgen-398301.fhir_dataset_multiple_sources.sync_Patient_where_last_updated_after_x_y_ago`(
+    1,
+    'HOUR'
+  );

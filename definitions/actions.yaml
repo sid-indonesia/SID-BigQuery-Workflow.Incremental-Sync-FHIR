@@ -10,6 +10,22 @@ actions:
     project: nextgen-398301
     filename: sync_from_converted_FHIR.sql
 - operation:
+    name: Refresh Materialized View "Flattened Health Record - Encounter-based"
+    dataset: dataform
+    project: nextgen-398301
+    dependencyTargets:
+    - name: Sync from base tables of HAPI DBs (*Ku Apps)
+    - name: Sync from base tables of HAPI DBs (Converted FHIR)
+    filename: refresh_mv_flattened_health_record_encounter_based.sql
+- operation:
+    name: Refresh Materialized View "Flattened Health Record - Immunization-based"
+    dataset: dataform
+    project: nextgen-398301
+    dependencyTargets:
+    - name: Sync from base tables of HAPI DBs (*Ku Apps)
+    - name: Sync from base tables of HAPI DBs (Converted FHIR)
+    filename: refresh_mv_flattened_health_record_immunization_based.sql
+- operation:
     name: Refresh Materialized View "Incremental Table"
     dataset: dataform
     project: nextgen-398301
