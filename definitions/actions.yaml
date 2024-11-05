@@ -77,3 +77,14 @@ actions:
     - name: Sync "Encounter"
     - name: Sync "Organization"
     filename: sync_flattened_health_record_observation_based_incremental.sql
+- operation:
+    name: Sync "Flattened Health Record - Immunization-based - Incremental"
+    dataset: dataform
+    project: nextgen-398301
+    dependencyTargets:
+    - name: Sync "Immunization"
+    - name: Sync "Patient"
+    - name: Sync "Encounter"
+    - name: Sync "Organization"
+    - name: Sync "RelatedPerson"
+    filename: sync_flattened_health_record_immunization_based_incremental.sql
