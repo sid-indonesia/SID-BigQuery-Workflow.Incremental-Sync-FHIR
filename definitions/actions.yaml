@@ -1,5 +1,15 @@
 actions:
 - operation:
+    name: Sync from base tables of HAPI DBs (*Ku Apps)
+    dataset: dataform
+    project: nextgen-398301
+    filename: sync_from_starKu_Apps.sql
+- operation:
+    name: Sync from base tables of HAPI DBs (Converted FHIR)
+    dataset: dataform
+    project: nextgen-398301
+    filename: sync_from_converted_FHIR.sql
+- operation:
     name: Refresh Materialized View "Incremental Table"
     dataset: dataform
     project: nextgen-398301
@@ -14,17 +24,6 @@ actions:
     dependencyTargets:
     - name: Refresh Materialized View "Incremental Table"
     filename: sync_Encounter.sql
-- operation:
-    name: Sync "Flattened Health Record - Observation-based - Incremental"
-    dataset: dataform
-    project: nextgen-398301
-    dependencyTargets:
-    - name: Sync "Patient"
-    - name: Sync "Observation"
-    - name: Sync "Practitioner"
-    - name: Sync "Encounter"
-    - name: Sync "Organization"
-    filename: sync_flattened_health_record_observation_based_incremental.sql
 - operation:
     name: Sync "Observation"
     dataset: dataform
@@ -54,12 +53,27 @@ actions:
     - name: Refresh Materialized View "Incremental Table"
     filename: sync_Practitioner.sql
 - operation:
-    name: Sync from base tables of HAPI DBs (*Ku Apps)
+    name: Sync "Immunization"
     dataset: dataform
     project: nextgen-398301
-    filename: sync_from_starKu_Apps.sql
+    dependencyTargets:
+    - name: Refresh Materialized View "Incremental Table"
+    filename: sync_Immunization.sql
 - operation:
-    name: Sync from base tables of HAPI DBs (Converted FHIR)
+    name: Sync "RelatedPerson"
     dataset: dataform
     project: nextgen-398301
-    filename: sync_from_converted_FHIR.sql
+    dependencyTargets:
+    - name: Refresh Materialized View "Incremental Table"
+    filename: sync_RelatedPerson.sql
+- operation:
+    name: Sync "Flattened Health Record - Observation-based - Incremental"
+    dataset: dataform
+    project: nextgen-398301
+    dependencyTargets:
+    - name: Sync "Patient"
+    - name: Sync "Observation"
+    - name: Sync "Practitioner"
+    - name: Sync "Encounter"
+    - name: Sync "Organization"
+    filename: sync_flattened_health_record_observation_based_incremental.sql
