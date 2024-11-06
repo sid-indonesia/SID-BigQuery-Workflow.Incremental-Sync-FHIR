@@ -1,0 +1,21 @@
+config {
+  name: 'Sync "Flattened Health Record - Encounter-based"',
+  dependencies: [
+    'Sync "Encounter"',
+    'Sync "Patient"',
+    'Sync "Organization"',
+    'Sync "Observation"',
+  ],
+}
+
+CALL
+  `${dataform.projectConfig.defaultDatabase}.${constants.datasetName}.sync_Flattened_Health_Record_Encounter_based_Incremental_where_Encounter_last_updated_after_x_y_ago`(
+    ${constants.paramTimestampSubIntervalIntegerValue} +
+      TIMESTAMP_DIFF(
+        CURRENT_TIMESTAMP,
+        TIMESTAMP('${constants.startTimestamp}'),
+        MINUTE
+      )
+      + 1,
+    '${constants.paramTimestampSubIntervalDatePartValue}'
+  );

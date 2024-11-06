@@ -1,0 +1,22 @@
+config {
+  name: 'Sync "Flattened Health Record - Immunization-based"',
+  dependencies: [
+    'Sync "Immunization"',
+    'Sync "Patient"',
+    'Sync "Encounter"',
+    'Sync "Organization"',
+    'Sync "RelatedPerson"',
+  ],
+}
+
+CALL
+  `${dataform.projectConfig.defaultDatabase}.${constants.datasetName}.sync_Flattened_Health_Record_Immunization_based_Incremental_where_Immunization_last_updated_after_x_y_ago`(
+    ${constants.paramTimestampSubIntervalIntegerValue} +
+      TIMESTAMP_DIFF(
+        CURRENT_TIMESTAMP,
+        TIMESTAMP('${constants.startTimestamp}'),
+        MINUTE
+      )
+      + 1,
+    '${constants.paramTimestampSubIntervalDatePartValue}'
+  );

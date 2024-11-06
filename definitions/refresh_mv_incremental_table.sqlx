@@ -1,0 +1,12 @@
+config {
+  name: 'Refresh Materialized View "Incremental Table"',
+  dependencies: [
+    'Sync from base tables of HAPI DBs (*Ku Apps)',
+    'Sync from base tables of HAPI DBs (Converted FHIR)',
+  ],
+}
+
+CALL
+  BQ.REFRESH_MATERIALIZED_VIEW(
+    '${dataform.projectConfig.defaultDatabase}.${constants.datasetName}.All FHIR Resources - Latest Version - Partitioned and Clustered'
+  );

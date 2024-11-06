@@ -1,0 +1,18 @@
+config {
+  name: 'Sync "Organization"',
+  dependencies: [
+    'Refresh Materialized View "Incremental Table"'
+  ],
+}
+
+CALL
+  `${dataform.projectConfig.defaultDatabase}.${constants.datasetName}.sync_Organization_where_last_updated_after_x_y_ago`(
+    ${constants.paramTimestampSubIntervalIntegerValue} +
+      TIMESTAMP_DIFF(
+        CURRENT_TIMESTAMP,
+        TIMESTAMP('${constants.startTimestamp}'),
+        MINUTE
+      )
+      + 1,
+    '${constants.paramTimestampSubIntervalDatePartValue}'
+  );
