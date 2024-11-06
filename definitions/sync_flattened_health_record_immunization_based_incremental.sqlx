@@ -11,12 +11,12 @@ config {
 
 CALL
   `${dataform.projectConfig.defaultDatabase}.${constants.datasetName}.sync_Flattened_Health_Record_Immunization_based_Incremental_where_Immunization_last_updated_after_x_y_ago`(
-    ${constants.paramTimestampSubIntervalIntegerValue} +
-      TIMESTAMP_DIFF(
-        CURRENT_TIMESTAMP,
-        TIMESTAMP('${constants.startTimestamp}'),
-        MINUTE
-      )
-      + 1,
+    ${constants.paramTimestampSubIntervalIntegerValue}
+      -- + TIMESTAMP_DIFF(
+      --   CURRENT_TIMESTAMP,
+      --   TIMESTAMP('${constants.startTimestamp}'),
+      --   MINUTE
+      -- ) -- Constants nya ngga berubah tiap run workflow, hasil compile terakhir
+      + 3,
     '${constants.paramTimestampSubIntervalDatePartValue}'
   );

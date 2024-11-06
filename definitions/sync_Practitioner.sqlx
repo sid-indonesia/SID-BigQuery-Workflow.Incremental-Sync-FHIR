@@ -1,18 +1,18 @@
 config {
-  name: 'Sync "RelatedPerson"',
+  name: 'Sync "Practitioner"',
   dependencies: [
     'Refresh Materialized View "Incremental Table"'
   ],
 }
 
 CALL
-  `${dataform.projectConfig.defaultDatabase}.${constants.datasetName}.sync_RelatedPerson_where_last_updated_after_x_y_ago`(
-    ${constants.paramTimestampSubIntervalIntegerValue} +
-      TIMESTAMP_DIFF(
-        CURRENT_TIMESTAMP,
-        TIMESTAMP('${constants.startTimestamp}'),
-        MINUTE
-      )
-      + 1,
+  `${dataform.projectConfig.defaultDatabase}.${constants.datasetName}.sync_Practitioner_where_last_updated_after_x_y_ago`(
+    ${constants.paramTimestampSubIntervalIntegerValue}
+      -- + TIMESTAMP_DIFF(
+      --   CURRENT_TIMESTAMP,
+      --   TIMESTAMP('${constants.startTimestamp}'),
+      --   MINUTE
+      -- ) -- Constants nya ngga berubah tiap run workflow, hasil compile terakhir
+      + 2,
     '${constants.paramTimestampSubIntervalDatePartValue}'
   );

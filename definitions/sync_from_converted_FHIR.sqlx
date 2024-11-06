@@ -4,12 +4,12 @@ config {
 
 CALL
   `${dataform.projectConfig.defaultDatabase}.hapi_fhir_kobo_converted_data_PROD_public.merge_to_partitioned_table_where_last_updated_after_x_y_ago`(
-    ${constants.paramTimestampSubIntervalIntegerValue} +
-      TIMESTAMP_DIFF(
-        CURRENT_TIMESTAMP,
-        TIMESTAMP('${constants.startTimestamp}'),
-        MINUTE
-      )
+    ${constants.paramTimestampSubIntervalIntegerValue}
+      -- + TIMESTAMP_DIFF(
+      --   CURRENT_TIMESTAMP,
+      --   TIMESTAMP('${constants.startTimestamp}'),
+      --   MINUTE
+      -- ) -- Constants nya ngga berubah tiap run workflow, hasil compile terakhir
       + 1,
     '${constants.paramTimestampSubIntervalDatePartValue}'
   );
