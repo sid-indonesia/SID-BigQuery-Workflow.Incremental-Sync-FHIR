@@ -1,0 +1,20 @@
+config {
+  type: "operations",
+  hasOutput: true,
+  name: "update_workflow_timestamp",
+  disabled: true,
+}
+
+CREATE OR REPLACE PROCEDURE ${self()}(workflow_name STRING)
+BEGIN
+  MERGE ${ref("Workflow Execution")} AS target
+  USING (SELECT workflow_name as wf_name, CURRENT_TIMESTAMP as curr_ts) AS source
+  ON target.workflow_name = source.wf_name
+  WHEN MATCHED THEN
+    UPDATE SET 
+      last_execution_timestamp = source.curr_ts,
+      updated_at = CURRENT_TIMESTAMP
+  WHEN NOT MATCHED THEN
+    INSERT (workflow_name, last_execution_timestamp)
+    VALUES (source.wf_name, source.curr_ts);
+END; 

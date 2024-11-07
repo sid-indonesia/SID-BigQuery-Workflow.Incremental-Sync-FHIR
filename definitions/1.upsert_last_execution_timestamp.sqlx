@@ -1,0 +1,9 @@
+config {
+  type: "operations",
+  hasOutput: false,
+  name: "upsert_last_execution_timestamp",
+  disabled: false,
+}
+
+-- Update the timestamp for this execution
+CALL ${ref("update_workflow_timestamp")}('${constants.workflowName}');
