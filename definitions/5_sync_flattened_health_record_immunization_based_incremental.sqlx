@@ -1,11 +1,11 @@
 config {
-  name: 'Sync "Flattened Health Record - Observation-based"',
+  name: '5_Sync "Flattened Health Record - Immunization-based"',
   dependencies: [
-    'Sync "Patient"',
-    'Sync "Observation"',
-    'Sync "Practitioner"',
-    'Sync "Encounter"',
-    'Sync "Organization"',
+    '4_Sync "Immunization"',
+    '4_Sync "Patient"',
+    '4_Sync "Encounter"',
+    '4_Sync "Organization"',
+    '4_Sync "RelatedPerson"',
   ],
 }
 
@@ -23,7 +23,7 @@ SET last_execution = (
 );
 
 CALL
-  `${dataform.projectConfig.defaultDatabase}.${constants.datasetName}.sync_Flattened_Health_Record_Observation_based_Incremental_where_Observation_last_updated_after_x_y_ago`(
+  `${dataform.projectConfig.defaultDatabase}.${constants.datasetName}.sync_Flattened_Health_Record_Immunization_based_Incremental_where_Immunization_last_updated_after_x_y_ago`(
     ${constants.paramTimestampSubIntervalIntegerValue}
       + TIMESTAMP_DIFF(
         CURRENT_TIMESTAMP,

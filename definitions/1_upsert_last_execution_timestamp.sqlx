@@ -1,7 +1,7 @@
 config {
   type: "operations",
   hasOutput: false,
-  name: "upsert_last_execution_timestamp",
+  name: "1_upsert_last_execution_timestamp",
   disabled: false,
 }
 

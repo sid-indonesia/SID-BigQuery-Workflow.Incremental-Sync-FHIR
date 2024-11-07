@@ -1,7 +1,7 @@
 config {
-  name: 'Sync "Practitioner"',
+  name: '4_Sync "Practitioner"',
   dependencies: [
-    'Refresh Materialized View "Incremental Table"'
+    '3_Refresh Materialized View "Incremental Table"'
   ],
 }
 

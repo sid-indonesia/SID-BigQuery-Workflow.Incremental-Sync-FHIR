@@ -1,7 +1,7 @@
 config {
-  name: 'Sync "Patient"',
+  name: '4_Sync "Organization"',
   dependencies: [
-    'Refresh Materialized View "Incremental Table"'
+    '3_Refresh Materialized View "Incremental Table"'
   ],
 }
 
@@ -19,7 +19,7 @@ SET last_execution = (
 );
 
 CALL
-  `${dataform.projectConfig.defaultDatabase}.${constants.datasetName}.sync_Patient_where_last_updated_after_x_y_ago`(
+  `${dataform.projectConfig.defaultDatabase}.${constants.datasetName}.sync_Organization_where_last_updated_after_x_y_ago`(
     ${constants.paramTimestampSubIntervalIntegerValue}
       + TIMESTAMP_DIFF(
         CURRENT_TIMESTAMP,

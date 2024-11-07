@@ -1,8 +1,8 @@
 config {
-  name: 'Refresh Materialized View "Incremental Table"',
+  name: '3_Refresh Materialized View "Incremental Table"',
   dependencies: [
-    'Sync from base tables of HAPI DBs (*Ku Apps)',
-    'Sync from base tables of HAPI DBs (Converted FHIR)',
+    '2_Sync from base tables of HAPI DBs (*Ku Apps)',
+    '2_Sync from base tables of HAPI DBs (Converted FHIR)',
   ],
 }
 
