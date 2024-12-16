@@ -1,0 +1,31 @@
+config {
+  name: '4_Sync "Condition"',
+  dependencies: [
+    '3_Refresh Materialized View "Incremental Table"'
+  ],
+}
+
+DECLARE last_execution TIMESTAMP;
+
+SET last_execution = (
+  SELECT
+    last_execution_timestamp
+  FROM
+    ${ref("Workflow Execution")}
+  WHERE
+    workflow_name = '${constants.workflowName}'
+  LIMIT
+    1
+);
+
+CALL
+  `${dataform.projectConfig.defaultDatabase}.${constants.datasetName}.sync_Condition_where_last_updated_after_x_y_ago`(
+    ${constants.paramTimestampSubIntervalIntegerValue}
+      + TIMESTAMP_DIFF(
+        CURRENT_TIMESTAMP,
+        last_execution,
+        MINUTE
+      )
+      + 1,
+    '${constants.paramTimestampSubIntervalDatePartValue}'
+  );
