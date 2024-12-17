@@ -1,0 +1,32 @@
+config {
+  name: '5_Sync "Flattened Health Record - Condition-based"',
+  dependencies: [
+    '4_Sync "Condition"',
+    '4_Sync "Patient"',
+  ],
+}
+
+DECLARE last_execution TIMESTAMP;
+
+SET last_execution = (
+  SELECT
+    last_execution_timestamp
+  FROM
+    ${ref("Workflow Execution")}
+  WHERE
+    workflow_name = '${constants.workflowName}'
+  LIMIT
+    1
+);
+
+CALL
+  `${dataform.projectConfig.defaultDatabase}.${constants.datasetName}.sync_Flattened_Health_Record_Condition_based_Incremental_where_Condition_last_updated_after_x_y_ago`(
+    ${constants.paramTimestampSubIntervalIntegerValue}
+      + TIMESTAMP_DIFF(
+        CURRENT_TIMESTAMP,
+        last_execution,
+        MINUTE
+      )
+      + 1,
+    '${constants.paramTimestampSubIntervalDatePartValue}'
+  );
